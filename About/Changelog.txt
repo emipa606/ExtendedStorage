@@ -1,0 +1,4 @@
+# Changelog for ExtendedStorage
+
+1.0.0.0 - First publish
+
