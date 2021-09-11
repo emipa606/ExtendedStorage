@@ -21,7 +21,7 @@ namespace ExtendedStorage
             ilgenerator.Emit(OpCodes.Ldarg_0);
             ilgenerator.Emit(OpCodes.Callvirt, getMethod!);
             ilgenerator.Emit(OpCodes.Ret);
-            return (Func<T, P>) dynamicMethod.CreateDelegate(typeof(Func<T, P>));
+            return (Func<T, P>)dynamicMethod.CreateDelegate(typeof(Func<T, P>));
         }
 
         // Token: 0x06000042 RID: 66 RVA: 0x00002FAC File Offset: 0x000011AC
@@ -33,7 +33,7 @@ namespace ExtendedStorage
             var ilgenerator = dynamicMethod.GetILGenerator();
             ilgenerator.Emit(OpCodes.Call, getMethod!);
             ilgenerator.Emit(OpCodes.Ret);
-            return (Func<P>) dynamicMethod.CreateDelegate(typeof(Func<P>));
+            return (Func<P>)dynamicMethod.CreateDelegate(typeof(Func<P>));
         }
 
         // Token: 0x06000043 RID: 67 RVA: 0x00003014 File Offset: 0x00001214
@@ -48,7 +48,7 @@ namespace ExtendedStorage
             ilgenerator.Emit(OpCodes.Ldarg_0);
             ilgenerator.Emit(OpCodes.Ldfld, field!);
             ilgenerator.Emit(OpCodes.Ret);
-            return (Func<T, F>) dynamicMethod.CreateDelegate(typeof(Func<T, F>));
+            return (Func<T, F>)dynamicMethod.CreateDelegate(typeof(Func<T, F>));
         }
 
         // Token: 0x06000044 RID: 68 RVA: 0x000030A0 File Offset: 0x000012A0
@@ -59,7 +59,7 @@ namespace ExtendedStorage
             var ilgenerator = dynamicMethod.GetILGenerator();
             ilgenerator.Emit(OpCodes.Ldsfld, field!);
             ilgenerator.Emit(OpCodes.Ret);
-            return (Func<F>) dynamicMethod.CreateDelegate(typeof(Func<F>));
+            return (Func<F>)dynamicMethod.CreateDelegate(typeof(Func<F>));
         }
 
         // Token: 0x06000045 RID: 69 RVA: 0x00003104 File Offset: 0x00001304
@@ -76,7 +76,7 @@ namespace ExtendedStorage
             ilgenerator.Emit(OpCodes.Ldarg_1);
             ilgenerator.Emit(OpCodes.Stfld, field!);
             ilgenerator.Emit(OpCodes.Ret);
-            return (Action<T, F>) dynamicMethod.CreateDelegate(typeof(Action<T, F>));
+            return (Action<T, F>)dynamicMethod.CreateDelegate(typeof(Action<T, F>));
         }
 
         // Token: 0x06000046 RID: 70 RVA: 0x000031A0 File Offset: 0x000013A0
@@ -91,7 +91,7 @@ namespace ExtendedStorage
             ilgenerator.Emit(OpCodes.Ldarg_0);
             ilgenerator.Emit(OpCodes.Stsfld, field!);
             ilgenerator.Emit(OpCodes.Ret);
-            return (Action<F>) dynamicMethod.CreateDelegate(typeof(Action<F>));
+            return (Action<F>)dynamicMethod.CreateDelegate(typeof(Action<F>));
         }
     }
 }

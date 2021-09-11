@@ -26,7 +26,7 @@ namespace ExtendedStorage.Patches
             {
                 yield return code[i];
                 if (code[i].opcode != OpCodes.Ldarg_0 || code[i + 1]?.opcode != OpCodes.Ldfld ||
-                    (FieldInfo) code[i + 1]?.operand != typeof(Thing).GetField("def"))
+                    (FieldInfo)code[i + 1]?.operand != typeof(Thing).GetField("def"))
                 {
                     continue;
                 }
@@ -34,7 +34,7 @@ namespace ExtendedStorage.Patches
                 i++;
                 yield return code[i];
                 if (code[i + 1]?.opcode != OpCodes.Ldfld ||
-                    (FieldInfo) code[i + 1]?.operand != typeof(ThingDef).GetField("category"))
+                    (FieldInfo)code[i + 1]?.operand != typeof(ThingDef).GetField("category"))
                 {
                     continue;
                 }
@@ -42,7 +42,7 @@ namespace ExtendedStorage.Patches
                 i++;
                 yield return code[i++];
                 yield return code[i++];
-                var branchLabel = (Label) code[i].operand;
+                var branchLabel = (Label)code[i].operand;
                 yield return code[i++];
                 yield return new CodeInstruction(OpCodes.Ldarg_S, 5);
                 yield return new CodeInstruction(OpCodes.Brtrue, branchLabel);

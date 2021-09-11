@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using ExtendedStorage.Patches;
 using RimWorld;
@@ -24,7 +23,7 @@ namespace ExtendedStorage
         private ThingDef _storedThingDef;
 
         // Token: 0x04000004 RID: 4
-        private Func<IEnumerable<Gizmo>> Building_GetGizmos;
+        //private Func<IEnumerable<Gizmo>> Building_GetGizmos;
 
         // Token: 0x04000005 RID: 5
 
@@ -51,7 +50,7 @@ namespace ExtendedStorage
             {
                 if (StoredThingDef != null)
                 {
-                    return (int) (StoredThingDef.stackLimit * this.GetStatValue(DefReferences.Stat_ES_StorageFactor));
+                    return (int)(StoredThingDef.stackLimit * this.GetStatValue(DefReferences.Stat_ES_StorageFactor));
                 }
 
                 return int.MaxValue;
@@ -242,21 +241,25 @@ namespace ExtendedStorage
         // Token: 0x06000011 RID: 17 RVA: 0x0000235D File Offset: 0x0000055D
         public override IEnumerable<Gizmo> GetGizmos()
         {
-            if (Building_GetGizmos == null)
-            {
-                var functionPointer = typeof(Building)
-                    .GetMethod("GetGizmos", BindingFlags.Instance | BindingFlags.Public)?.MethodHandle
-                    .GetFunctionPointer();
-                Building_GetGizmos =
-                    (Func<IEnumerable<Gizmo>>) Activator.CreateInstance(typeof(Func<IEnumerable<Gizmo>>), this,
-                        functionPointer);
-            }
+            //Log.Message("if (Building_GetGizmos == null)");
+            //if (Building_GetGizmos == null)
+            //{
+            //    var functionPointer = typeof(Building)
+            //        .GetMethod("GetGizmos", BindingFlags.Instance | BindingFlags.Public)?.MethodHandle
+            //        .GetFunctionPointer();
+            //    Building_GetGizmos =
+            //        (Func<IEnumerable<Gizmo>>)Activator.CreateInstance(typeof(Func<IEnumerable<Gizmo>>), this,
+            //            functionPointer);
+            //}
 
-            var enumerable = Building_GetGizmos();
+            //Log.Message("var enumerable = Building_GetGizmos();");
+            //var enumerable = Building_GetGizmos();
+            var enumerable = base.GetGizmos();
             foreach (var gizmo in enumerable)
             {
                 yield return gizmo;
             }
+
 
             var command_Action = new Command_Action
             {
@@ -546,9 +549,8 @@ namespace ExtendedStorage
         }
 
         // Token: 0x06000023 RID: 35 RVA: 0x0000296C File Offset: 0x00000B6C
-        private IEnumerable<Thing> SplurgeThings(IEnumerable<Thing> things, IntVec3 center, bool forceSplurge = false)
+        private void SplurgeThings(IEnumerable<Thing> things, IntVec3 center, bool forceSplurge = false)
         {
-            var list = new List<Thing>();
             using var enumerator = GenRadial.RadialCellsAround(center, 20f, false).GetEnumerator();
             foreach (var thing in things)
             {
@@ -569,14 +571,12 @@ namespace ExtendedStorage
                         Log.Warning(
                             "Ran out of cells to splurge " + thing.LabelCap +
                             " - there might be issues on save/reload.");
-                        return list;
+                        return;
                     }
 
-                    list.Add(StorageUtility.SplitOfStackInto(thing, targetLocation));
+                    StorageUtility.SplitOfStackInto(thing, targetLocation);
                 }
             }
-
-            return list;
         }
 
         // Token: 0x06000024 RID: 36 RVA: 0x00002A48 File Offset: 0x00000C48
@@ -638,7 +638,7 @@ namespace ExtendedStorage
         private void TryUnstackStoredItems()
         {
             var thingsToSplurge = StoredThings.ToList();
-            queuedTickAction = (Action) Delegate.Combine(queuedTickAction, (Action) delegate
+            queuedTickAction = (Action)Delegate.Combine(queuedTickAction, (Action)delegate
             {
                 var array = thingsToSplurge.Where(t => t.def != StoredThingDef).ToArray();
                 SplurgeThings(array, OutputSlot, true);

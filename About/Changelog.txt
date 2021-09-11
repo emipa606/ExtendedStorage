@@ -1,4 +1,7 @@
 # Changelog for ExtendedStorage
 
+1.0.1.0 - Fixed a crashinginducing overcomplicated gizmo-iterator
+
+
 1.0.0.0 - First publish
 

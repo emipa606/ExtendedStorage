@@ -20,7 +20,7 @@ namespace ExtendedStorage.Patches
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instr)
         {
             var list = new List<CodeInstruction>(instr);
-            var num = list.FindIndex(ci => ci.opcode == OpCodes.Call && (MethodInfo) ci.operand == mi);
+            var num = list.FindIndex(ci => ci.opcode == OpCodes.Call && (MethodInfo)ci.operand == mi);
             if (num == -1)
             {
                 Log.Warning("Could not find Map_FinalizeLoading transpiler anchor - not patching.");

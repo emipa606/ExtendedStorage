@@ -1,14 +1,14 @@
 # ExtendedStorage
 
-![Image](https://i.imgur.com/WAEzk68.png)
+![Image](https://i.imgur.com/buuPQel.png)
 
 Update of Skullywag, Fluffy, spdskatr, DoctorVanGogh, Terraggs mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=731732064
 
-![Image](https://i.imgur.com/7Gzt3Rg.png)
+![Image](https://i.imgur.com/pufA0kM.png)
 
 	
-![Image](https://i.imgur.com/NOW7jU1.png)
+![Image](https://i.imgur.com/Z4GOv8H.png)
 
 Extended Storage
 
@@ -18,7 +18,7 @@ This works by having an input cell which the storage cell grabs from until it re
 
 No requirements just subscribe and go.
 
-![Image](https://i.imgur.com/Rs6T6cr.png)
+![Image](https://i.imgur.com/PwoNOj4.png)
 
 
 

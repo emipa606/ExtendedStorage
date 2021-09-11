@@ -25,7 +25,7 @@ namespace ExtendedStorage.Patches
                 var instruction = instructionsList[i];
                 yield return instruction;
                 if (instruction.opcode == OpCodes.Ble &&
-                    (FieldInfo) instructionsList[i - 1].operand == typeof(ThingDef).GetField("stackLimit"))
+                    (FieldInfo)instructionsList[i - 1].operand == typeof(ThingDef).GetField("stackLimit"))
                 {
                     yield return new CodeInstruction(OpCodes.Ldarg_0);
                     yield return new CodeInstruction(OpCodes.Ldarg_1);
