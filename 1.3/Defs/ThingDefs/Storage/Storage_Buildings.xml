@@ -59,6 +59,9 @@
       <li>Fabric</li>
     </stuffCategories>
     <costStuffCount>45</costStuffCount>
+	<researchPrerequisites>
+		<li>ComplexFurniture</li>
+	</researchPrerequisites>
     <building>
       <fixedStorageSettings>
         <priority>Important</priority>
@@ -88,6 +91,9 @@
       <li>Metallic</li>
     </stuffCategories>
     <costStuffCount>30</costStuffCount>
+	<researchPrerequisites>
+		<li>ComplexFurniture</li>
+	</researchPrerequisites>
     <building>
       <fixedStorageSettings>
         <priority>Important</priority>
@@ -119,6 +125,9 @@
       <li>Woody</li>
     </stuffCategories>
     <costStuffCount>45</costStuffCount>
+	<researchPrerequisites>
+		<li>ComplexFurniture</li>
+	</researchPrerequisites>
     <building>
       <fixedStorageSettings>
         <priority>Important</priority>
@@ -150,6 +159,9 @@
       <li>Woody</li>
     </stuffCategories>
     <costStuffCount>45</costStuffCount>
+	<researchPrerequisites>
+		<li>ComplexFurniture</li>
+	</researchPrerequisites>
     <building>
       <fixedStorageSettings>
         <priority>Important</priority>
@@ -181,6 +193,9 @@
       <li>Metallic</li>
     </stuffCategories>
     <costStuffCount>90</costStuffCount>
+	<researchPrerequisites>
+		<li>ComplexFurniture</li>
+	</researchPrerequisites>
     <description>Haulers carry materials here for storage. Holds more than a pallet but not as neatly.</description>
     <building>
       <fixedStorageSettings>
@@ -216,6 +231,9 @@
       <li>Woody</li>
     </stuffCategories>
     <costStuffCount>45</costStuffCount>
+	<researchPrerequisites>
+		<li>ComplexFurniture</li>
+	</researchPrerequisites>
     <building>
       <fixedStorageSettings>
         <priority>Important</priority>
