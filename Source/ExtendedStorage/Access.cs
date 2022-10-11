@@ -1,13 +1,12 @@
 using System;
 using System.Reflection;
 using System.Reflection.Emit;
-using JetBrains.Annotations;
 
 namespace ExtendedStorage;
 
 public static class Access
 {
-    public static Func<T, P> GetPropertyGetter<T, P>([NotNull] string propertyName)
+    public static Func<T, P> GetPropertyGetter<T, P>(string propertyName)
     {
         var getMethod = typeof(T).GetProperty(propertyName, BindingFlags.Instance | BindingFlags.NonPublic)
             ?.GetGetMethod(true);
@@ -22,7 +21,7 @@ public static class Access
         return (Func<T, P>)dynamicMethod.CreateDelegate(typeof(Func<T, P>));
     }
 
-    public static Func<P> GetPropertyGetter<P>([NotNull] string propertyName, [NotNull] Type ownerType)
+    public static Func<P> GetPropertyGetter<P>(string propertyName, Type ownerType)
     {
         var getMethod = ownerType.GetProperty(propertyName, BindingFlags.Static | BindingFlags.NonPublic)
             ?.GetGetMethod(true);
@@ -33,7 +32,7 @@ public static class Access
         return (Func<P>)dynamicMethod.CreateDelegate(typeof(Func<P>));
     }
 
-    public static Func<T, F> GetFieldGetter<T, F>([NotNull] string fieldName)
+    public static Func<T, F> GetFieldGetter<T, F>(string fieldName)
     {
         var field = typeof(T).GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
         var dynamicMethod = new DynamicMethod(string.Empty, typeof(F), new[]
@@ -47,7 +46,7 @@ public static class Access
         return (Func<T, F>)dynamicMethod.CreateDelegate(typeof(Func<T, F>));
     }
 
-    public static Func<F> GetFieldGetter<F>([NotNull] string fieldName, [NotNull] Type ownerType)
+    public static Func<F> GetFieldGetter<F>(string fieldName, Type ownerType)
     {
         var field = ownerType.GetField(fieldName, BindingFlags.Static | BindingFlags.NonPublic);
         var dynamicMethod = new DynamicMethod(string.Empty, typeof(F), Type.EmptyTypes, ownerType);
@@ -57,7 +56,7 @@ public static class Access
         return (Func<F>)dynamicMethod.CreateDelegate(typeof(Func<F>));
     }
 
-    public static Action<T, F> GetFieldSetter<T, F>([NotNull] string fieldName)
+    public static Action<T, F> GetFieldSetter<T, F>(string fieldName)
     {
         var field = typeof(T).GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
         var dynamicMethod = new DynamicMethod(string.Empty, null, new[]
@@ -73,7 +72,7 @@ public static class Access
         return (Action<T, F>)dynamicMethod.CreateDelegate(typeof(Action<T, F>));
     }
 
-    public static Action<F> GetFieldSetter<F>([NotNull] string fieldName, [NotNull] Type ownerType)
+    public static Action<F> GetFieldSetter<F>(string fieldName, Type ownerType)
     {
         var field = ownerType.GetField(fieldName, BindingFlags.Static | BindingFlags.NonPublic);
         var dynamicMethod = new DynamicMethod(string.Empty, null, new[]

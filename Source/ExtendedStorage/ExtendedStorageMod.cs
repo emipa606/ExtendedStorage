@@ -17,7 +17,7 @@ internal class ExtendedStorageMod : Mod
         }
         catch (Exception arg)
         {
-            Log.Error("Extended Storage :: Caught exception: " + arg);
+            Log.Error($"Extended Storage :: Caught exception: {arg}");
         }
     }
 }

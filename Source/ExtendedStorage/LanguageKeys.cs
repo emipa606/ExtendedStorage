@@ -1,11 +1,8 @@
 using System.CodeDom.Compiler;
-using System.Diagnostics.CodeAnalysis;
 
 namespace ExtendedStorage;
 
 [GeneratedCode("DefGenerator.tt", "0.1")]
-[SuppressMessage("ReSharper", "InconsistentNaming")]
-[SuppressMessage("ReSharper", "UnusedMember.Global")]
 public static class LanguageKeys
 {
     public static class keyed

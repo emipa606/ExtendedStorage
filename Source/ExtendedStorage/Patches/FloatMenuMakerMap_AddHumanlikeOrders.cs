@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using HarmonyLib;
 using RimWorld;
@@ -10,7 +9,6 @@ using Verse.AI;
 namespace ExtendedStorage.Patches;
 
 [HarmonyPatch(typeof(FloatMenuMakerMap), "AddHumanlikeOrders")]
-[SuppressMessage("ReSharper", "InconsistentNaming")]
 internal class FloatMenuMakerMap_AddHumanlikeOrders
 {
     public static void Postfix(Vector3 clickPos, Pawn pawn, List<FloatMenuOption> opts)

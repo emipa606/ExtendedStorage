@@ -8,7 +8,7 @@ internal static class StorageUtility
     public static Building_ExtendedStorage GetStoringBuilding(Thing t)
     {
         Building_ExtendedStorage building_ExtendedStorage;
-        if (!(t is Building_ExtendedStorage))
+        if (t is not Building_ExtendedStorage)
         {
             var slotGroup = t.GetSlotGroup();
             building_ExtendedStorage = slotGroup?.parent as Building_ExtendedStorage;

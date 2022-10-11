@@ -29,12 +29,9 @@ public class WorkGiver_Merge : WorkGiver_Scanner
             return null;
         }
 
-        if (TryGetTargetCell(pawn, thing, out var storeCell))
-        {
-            return HaulAIUtility.HaulToCellStorageJob(pawn, thing, storeCell, true);
-        }
-
-        return null;
+        return TryGetTargetCell(pawn, thing, out var storeCell)
+            ? HaulAIUtility.HaulToCellStorageJob(pawn, thing, storeCell, true)
+            : null;
     }
 
     public static bool TryGetTargetCell(Pawn pawn, Thing thing, out IntVec3 targetCell)

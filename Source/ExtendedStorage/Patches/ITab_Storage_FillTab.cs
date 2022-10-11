@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using HarmonyLib;
-using JetBrains.Annotations;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -9,7 +8,6 @@ using Verse;
 namespace ExtendedStorage.Patches;
 
 [HarmonyPatch(typeof(ITab_Storage), "FillTab")]
-[UsedImplicitly]
 [SuppressMessage("ReSharper", "InconsistentNaming")]
 internal class ITab_Storage_FillTab
 {
@@ -24,7 +22,7 @@ internal class ITab_Storage_FillTab
 
         var rect = new Rect(175f, 10f, 100f, 29f);
         Text.Font = GameFont.Tiny;
-        if (!Widgets.ButtonText(rect, "[Debug] " + (showStoreSettings ? "Store" : "User"), true, false))
+        if (!Widgets.ButtonText(rect, $"[Debug] {(showStoreSettings ? "Store" : "User")}", true, false))
         {
             return;
         }

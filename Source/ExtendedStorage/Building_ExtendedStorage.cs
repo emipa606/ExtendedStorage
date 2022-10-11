@@ -65,12 +65,8 @@ public class Building_ExtendedStorage : Building_Storage, IUserSettingsOwner
         get
         {
             var map = Map;
-            if (map == null)
-            {
-                return null;
-            }
 
-            return map.thingGrid.ThingsAt(InputSlot).FirstOrDefault(StoredThingDef != null
+            return map?.thingGrid.ThingsAt(InputSlot).FirstOrDefault(StoredThingDef != null
                 ? t => t.def == StoredThingDef
                 : t => slotGroup.Settings.AllowedToAccept(t));
         }
@@ -183,12 +179,8 @@ public class Building_ExtendedStorage : Building_Storage, IUserSettingsOwner
         }
 
         var gfxStoredThing = _gfxStoredThing;
-        if (gfxStoredThing == null)
-        {
-            return;
-        }
 
-        gfxStoredThing.DrawFromDef(
+        gfxStoredThing?.DrawFromDef(
             GenThing.TrueCenter(OutputSlot, Rot4.North, IntVec2.One, DrawPos.y + 0.5f),
             Rot4.North, StoredThingDef);
     }
@@ -376,12 +368,8 @@ public class Building_ExtendedStorage : Building_Storage, IUserSettingsOwner
         }
 
         var map = Map;
-        if (map == null)
-        {
-            return;
-        }
 
-        map.mapDrawer.SectionAt(OutputSlot).RegenerateLayers(MapMeshFlag.Things);
+        map?.mapDrawer.SectionAt(OutputSlot).RegenerateLayers(MapMeshFlag.Things);
     }
 
     public void Notify_StoredThingDefChanged()
@@ -456,16 +444,9 @@ public class Building_ExtendedStorage : Building_Storage, IUserSettingsOwner
             thing2.Position = thing.Position;
             thing2.SpawnSetup(thing.Map, false);
             var group = OutputSlot.GetSlotGroup(Map);
-            if (group == null)
-            {
-                continue;
-            }
 
-            var parent = group.parent;
-            if (parent != null)
-            {
-                parent.Notify_ReceivedThing(thing2);
-            }
+            var parent = group?.parent;
+            parent?.Notify_ReceivedThing(thing2);
         }
     }
 
@@ -515,8 +496,7 @@ public class Building_ExtendedStorage : Building_Storage, IUserSettingsOwner
                 if (!EnumUtility.TryGetNext(enumerator, c => c.Standable(Map), out var targetLocation))
                 {
                     Log.Warning(
-                        "Ran out of cells to splurge " + thing.LabelCap +
-                        " - there might be issues on save/reload.");
+                        $"Ran out of cells to splurge {thing.LabelCap} - there might be issues on save/reload.");
                     return;
                 }
 
@@ -556,18 +536,10 @@ public class Building_ExtendedStorage : Building_Storage, IUserSettingsOwner
         thing.SpawnSetup(Map, false);
         StoredThingDef = thing.def;
         var group = OutputSlot.GetSlotGroup(Map);
-        if (group == null)
-        {
-            return;
-        }
 
-        var parent = group.parent;
-        if (parent == null)
-        {
-            return;
-        }
+        var parent = group?.parent;
 
-        parent.Notify_ReceivedThing(thing);
+        parent?.Notify_ReceivedThing(thing);
     }
 
     internal void TrySplurgeStoredItems()

@@ -1,11 +1,9 @@
-using System.Diagnostics.CodeAnalysis;
 using HarmonyLib;
 using Verse;
 
 namespace ExtendedStorage.Patches;
 
 [HarmonyPatch(typeof(CompressibilityDeciderUtility), "IsSaveCompressible")]
-[SuppressMessage("ReSharper", "InconsistentNaming")]
 internal class CompressibilityDeciderUtility_IsSaveCompressible
 {
     public static void Postfix(ref bool __result, Thing t)

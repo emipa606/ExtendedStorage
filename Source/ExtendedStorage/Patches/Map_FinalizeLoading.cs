@@ -45,8 +45,7 @@ internal class Map_FinalizeLoading
             catch (Exception ex)
             {
                 Log.Error(
-                    string.Concat("Exception spawning loaded thing ",
-                        building_ExtendedStorage.ToStringSafe<Building>(), ": ", ex));
+                    $"Exception spawning loaded thing {building_ExtendedStorage.ToStringSafe<Building>()}: {ex}");
             }
 
             things.Remove(building_ExtendedStorage);
