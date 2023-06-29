@@ -14,6 +14,6 @@ internal class CompressibilityDeciderUtility_IsSaveCompressible
         }
 
         __result = !t.Map.thingGrid.ThingsListAt(t.Position).Any(thing => thing is Building_ExtendedStorage);
-        Log.Message($"{t.Label}: {__result}");
+        //Log.Message($"{t.Label}: {__result}");
     }
 }
