@@ -1,5 +1,4 @@
 using HarmonyLib;
-using UnityEngine;
 using Verse;
 
 namespace ExtendedStorage.Patches;
@@ -7,7 +6,7 @@ namespace ExtendedStorage.Patches;
 [HarmonyPatch(typeof(Thing), "DrawAt")]
 internal class Thing_DrawAt
 {
-    public static bool Prefix(Thing __instance, Vector3 drawLoc, bool flip)
+    public static bool Prefix(Thing __instance)
     {
         if (__instance.def.SingleStorableDef())
         {

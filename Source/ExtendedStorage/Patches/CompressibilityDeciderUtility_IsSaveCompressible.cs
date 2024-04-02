@@ -3,7 +3,7 @@ using Verse;
 
 namespace ExtendedStorage.Patches;
 
-[HarmonyPatch(typeof(CompressibilityDeciderUtility), "IsSaveCompressible")]
+[HarmonyPatch(typeof(CompressibilityDeciderUtility), nameof(CompressibilityDeciderUtility.IsSaveCompressible))]
 internal class CompressibilityDeciderUtility_IsSaveCompressible
 {
     public static void Postfix(ref bool __result, Thing t)

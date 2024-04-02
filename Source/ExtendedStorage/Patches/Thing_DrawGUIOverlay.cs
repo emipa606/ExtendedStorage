@@ -3,7 +3,7 @@ using Verse;
 
 namespace ExtendedStorage.Patches;
 
-[HarmonyPatch(typeof(Thing), "DrawGUIOverlay")]
+[HarmonyPatch(typeof(Thing), nameof(Thing.DrawGUIOverlay))]
 internal class Thing_DrawGUIOverlay
 {
     public static bool Prefix(Thing __instance)

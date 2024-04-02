@@ -7,8 +7,8 @@ using Verse;
 
 namespace ExtendedStorage.Patches;
 
-[HarmonyPatch(typeof(GenSpawn), "Spawn", typeof(Thing), typeof(IntVec3), typeof(Map), typeof(Rot4),
-    typeof(WipeMode), typeof(bool))]
+[HarmonyPatch(typeof(GenSpawn), nameof(GenSpawn.Spawn), typeof(Thing), typeof(IntVec3), typeof(Map), typeof(Rot4),
+    typeof(WipeMode), typeof(bool), typeof(bool))]
 public static class GenSpawn_Spawn
 {
     //public static FieldInfo LoadedFullThingsField =

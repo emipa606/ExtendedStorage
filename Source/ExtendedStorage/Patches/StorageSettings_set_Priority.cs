@@ -3,7 +3,7 @@ using RimWorld;
 
 namespace ExtendedStorage.Patches;
 
-[HarmonyPatch(typeof(StorageSettings), "set_Priority")]
+[HarmonyPatch(typeof(StorageSettings), nameof(StorageSettings.Priority), MethodType.Setter)]
 internal class StorageSettings_set_Priority
 {
     public static void Postfix(StorageSettings __instance)

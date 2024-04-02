@@ -20,10 +20,6 @@ public class Building_ExtendedStorage : Building_Storage, IUserSettingsOwner
 
     //private Func<IEnumerable<Gizmo>> Building_GetGizmos;
 
-
-    internal string label;
-
-
     private Action queuedTickAction;
 
     public UserSettings userSettings;
@@ -169,9 +165,9 @@ public class Building_ExtendedStorage : Building_Storage, IUserSettingsOwner
         }
     }
 
-    public override void Draw()
+    protected override void DrawAt(Vector3 drawLoc, bool flip = false)
     {
-        base.Draw();
+        base.DrawAt(drawLoc, flip);
         var storedThingDef = StoredThingDef;
         if (storedThingDef != null && storedThingDef.SingleStorableDef())
         {
@@ -181,7 +177,7 @@ public class Building_ExtendedStorage : Building_Storage, IUserSettingsOwner
         var gfxStoredThing = _gfxStoredThing;
 
         gfxStoredThing?.DrawFromDef(
-            GenThing.TrueCenter(OutputSlot, Rot4.North, IntVec2.One, DrawPos.y + 0.5f),
+            GenThing.TrueCenter(OutputSlot, Rot4.North, IntVec2.One, drawLoc.y + 0.5f),
             Rot4.North, StoredThingDef);
     }
 
@@ -218,16 +214,16 @@ public class Building_ExtendedStorage : Building_Storage, IUserSettingsOwner
         }
 
 
-        var command_Action = new Command_Action
-        {
-            icon = ContentFinder<Texture2D>.Get("UI/Icons/Rename"),
-            defaultDesc = "ExtendedStorage.Rename".Translate(def.label),
-            defaultLabel = "Rename".Translate(),
-            activateSound = SoundDef.Named("Click"),
-            action = delegate { Find.WindowStack.Add(new ES_Dialog_Rename(this)); },
-            groupKey = 942608684
-        };
-        yield return command_Action;
+        //var command_Action = new Command_Action
+        //{
+        //    icon = ContentFinder<Texture2D>.Get("UI/Icons/Rename"),
+        //    defaultDesc = "ExtendedStorage.Rename".Translate(def.label),
+        //    defaultLabel = "Rename".Translate(),
+        //    activateSound = SoundDef.Named("Click"),
+        //    action = delegate { Find.WindowStack.Add(new ES_Dialog_Rename(this)); },
+        //    groupKey = 942608684
+        //};
+        //yield return command_Action;
         foreach (var gizmo2 in StorageSettingsClipboard.CopyPasteGizmosFor(userSettings))
         {
             yield return gizmo2;
@@ -369,7 +365,7 @@ public class Building_ExtendedStorage : Building_Storage, IUserSettingsOwner
 
         var map = Map;
 
-        map?.mapDrawer.SectionAt(OutputSlot).RegenerateLayers(MapMeshFlag.Things);
+        map?.mapDrawer.SectionAt(OutputSlot).RegenerateAllLayers();
     }
 
     public void Notify_StoredThingDefChanged()
@@ -578,15 +574,8 @@ public class Building_ExtendedStorage : Building_Storage, IUserSettingsOwner
             return;
         }
 
-        var array = (from c in (from c in StoredThings.ToList().Select(delegate(Thing t)
-                {
-                    if (!t.TryGetQuality(out var value))
-                    {
-                        return null;
-                    }
-
-                    return new QualityCategory?(value);
-                })
+        var array = (from c in (from c in StoredThings.ToList().Select(t =>
+                    !t.TryGetQuality(out var value) ? null : new QualityCategory?(value))
                 where c != null
                 select c.Value).Distinct()
             orderby c

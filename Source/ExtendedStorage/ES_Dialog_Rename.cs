@@ -1,18 +1,19 @@
-using Verse;
+//using Verse;
 
-namespace ExtendedStorage;
+//namespace ExtendedStorage;
 
-public class ES_Dialog_Rename : Dialog_Rename
-{
-    private readonly Building_ExtendedStorage building;
+//public class ES_Dialog_Rename : Dialog_Rename
+//{
+//    private readonly Building_ExtendedStorage building;
 
-    public ES_Dialog_Rename(Building_ExtendedStorage building)
-    {
-        this.building = building;
-    }
+//    public ES_Dialog_Rename(Building_ExtendedStorage building)
+//    {
+//        this.building = building;
+//    }
 
-    protected override void SetName(string name)
-    {
-        building.label = name;
-    }
-}
+//    protected override void SetName(string name)
+//    {
+//        building.label = name;
+//    }
+//}
+

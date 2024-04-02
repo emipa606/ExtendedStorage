@@ -7,7 +7,7 @@ using Verse;
 
 namespace ExtendedStorage.Patches;
 
-[HarmonyPatch(typeof(Thing), "SpawnSetup")]
+[HarmonyPatch(typeof(Thing), nameof(Thing.SpawnSetup))]
 internal class Thing_SpawnSetup
 {
     public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

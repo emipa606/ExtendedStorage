@@ -8,7 +8,7 @@ using Verse;
 
 namespace ExtendedStorage.Patches;
 
-[HarmonyPatch(typeof(Map), "FinalizeLoading")]
+[HarmonyPatch(typeof(Map), nameof(Map.FinalizeLoading))]
 internal class Map_FinalizeLoading
 {
     private static readonly MethodInfo mi =

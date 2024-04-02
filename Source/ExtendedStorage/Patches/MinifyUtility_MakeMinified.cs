@@ -4,7 +4,7 @@ using Verse;
 
 namespace ExtendedStorage.Patches;
 
-[HarmonyPatch(typeof(MinifyUtility), "MakeMinified")]
+[HarmonyPatch(typeof(MinifyUtility), nameof(MinifyUtility.MakeMinified))]
 internal class MinifyUtility_MakeMinified
 {
     public static void Prefix(Thing thing)

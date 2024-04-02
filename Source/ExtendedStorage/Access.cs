@@ -10,10 +10,9 @@ public static class Access
     {
         var getMethod = typeof(T).GetProperty(propertyName, BindingFlags.Instance | BindingFlags.NonPublic)
             ?.GetGetMethod(true);
-        var dynamicMethod = new DynamicMethod(string.Empty, typeof(P), new[]
-        {
+        var dynamicMethod = new DynamicMethod(string.Empty, typeof(P), [
             typeof(T)
-        }, typeof(T));
+        ], typeof(T));
         var ilgenerator = dynamicMethod.GetILGenerator();
         ilgenerator.Emit(OpCodes.Ldarg_0);
         ilgenerator.Emit(OpCodes.Callvirt, getMethod!);
@@ -35,10 +34,9 @@ public static class Access
     public static Func<T, F> GetFieldGetter<T, F>(string fieldName)
     {
         var field = typeof(T).GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
-        var dynamicMethod = new DynamicMethod(string.Empty, typeof(F), new[]
-        {
+        var dynamicMethod = new DynamicMethod(string.Empty, typeof(F), [
             typeof(T)
-        }, typeof(T));
+        ], typeof(T));
         var ilgenerator = dynamicMethod.GetILGenerator();
         ilgenerator.Emit(OpCodes.Ldarg_0);
         ilgenerator.Emit(OpCodes.Ldfld, field!);
@@ -59,11 +57,10 @@ public static class Access
     public static Action<T, F> GetFieldSetter<T, F>(string fieldName)
     {
         var field = typeof(T).GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
-        var dynamicMethod = new DynamicMethod(string.Empty, null, new[]
-        {
+        var dynamicMethod = new DynamicMethod(string.Empty, null, [
             typeof(T),
             typeof(F)
-        }, typeof(T));
+        ], typeof(T));
         var ilgenerator = dynamicMethod.GetILGenerator();
         ilgenerator.Emit(OpCodes.Ldarg_0);
         ilgenerator.Emit(OpCodes.Ldarg_1);
@@ -75,10 +72,9 @@ public static class Access
     public static Action<F> GetFieldSetter<F>(string fieldName, Type ownerType)
     {
         var field = ownerType.GetField(fieldName, BindingFlags.Static | BindingFlags.NonPublic);
-        var dynamicMethod = new DynamicMethod(string.Empty, null, new[]
-        {
+        var dynamicMethod = new DynamicMethod(string.Empty, null, [
             typeof(F)
-        }, ownerType);
+        ], ownerType);
         var ilgenerator = dynamicMethod.GetILGenerator();
         ilgenerator.Emit(OpCodes.Ldarg_0);
         ilgenerator.Emit(OpCodes.Stsfld, field!);

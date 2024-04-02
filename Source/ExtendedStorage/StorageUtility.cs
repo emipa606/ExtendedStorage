@@ -19,15 +19,10 @@ internal static class StorageUtility
         }
 
         var building_ExtendedStorage2 = building_ExtendedStorage;
-        if (building_ExtendedStorage2?.StoredThingDef != t.def)
-        {
-            return null;
-        }
-
-        return building_ExtendedStorage2;
+        return building_ExtendedStorage2?.StoredThingDef != t.def ? null : building_ExtendedStorage2;
     }
 
-    public static Thing SplitOfStackInto(Thing existingThing, IntVec3 targetLocation)
+    public static void SplitOfStackInto(Thing existingThing, IntVec3 targetLocation)
     {
         var map = existingThing.Map;
         var thing = ThingMaker.MakeThing(existingThing.def, existingThing.Stuff);
@@ -43,7 +38,7 @@ internal static class StorageUtility
             existingThing.Destroy();
         }
 
-        return GenSpawn.Spawn(thing, targetLocation, map);
+        GenSpawn.Spawn(thing, targetLocation, map);
     }
 
     public static bool SingleStorableDef(this ThingDef def)
