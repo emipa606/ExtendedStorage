@@ -22,6 +22,7 @@
     <building>
       <preventDeteriorationOnTop>true</preventDeteriorationOnTop>
       <fixedStorageSettings>
+        <maxItemsInCell>7</maxItemsInCell>
         <priority>Important</priority>
         <filter>
           <categories>
@@ -63,6 +64,7 @@
       <li>ComplexFurniture</li>
     </researchPrerequisites>
     <building>
+      <maxItemsInCell>6</maxItemsInCell>
       <fixedStorageSettings>
         <priority>Important</priority>
         <filter>
@@ -96,6 +98,7 @@
     </researchPrerequisites>
     <building>
       <fixedStorageSettings>
+        <maxItemsInCell>3</maxItemsInCell>
         <priority>Important</priority>
         <filter>
           <thingDefs>
@@ -130,6 +133,7 @@
     </researchPrerequisites>
     <building>
       <fixedStorageSettings>
+        <maxItemsInCell>10</maxItemsInCell>
         <priority>Important</priority>
         <filter>
           <categories>
@@ -163,6 +167,7 @@
       <li>ComplexFurniture</li>
     </researchPrerequisites>
     <building>
+      <maxItemsInCell>4</maxItemsInCell>
       <fixedStorageSettings>
         <priority>Important</priority>
         <filter>
@@ -199,6 +204,7 @@
     <description>Haulers carry materials here for storage. Holds more than a pallet but not as neatly.</description>
     <building>
       <fixedStorageSettings>
+        <maxItemsInCell>12</maxItemsInCell>
         <priority>Important</priority>
         <filter>
           <categories>
@@ -236,6 +242,7 @@
     </researchPrerequisites>
     <building>
       <fixedStorageSettings>
+        <maxItemsInCell>10</maxItemsInCell>
         <priority>Important</priority>
         <filter>
           <categories>
@@ -272,6 +279,7 @@
     <building>
       <preventDeteriorationOnTop>true</preventDeteriorationOnTop>
       <fixedStorageSettings>
+        <maxItemsInCell>8</maxItemsInCell>
         <priority>Important</priority>
         <filter>
           <categories>
